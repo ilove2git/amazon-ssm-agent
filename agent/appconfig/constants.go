@@ -107,8 +107,10 @@ const (
 
 	// Permissions defaults
 	//NOTE: Limit READ, WRITE and EXECUTE access to administrators/root.
-	ReadWriteAccess        = 0600
-	ReadWriteExecuteAccess = 0700
+	// ReadWriteAccess        = 0600
+	// ReadWriteExecuteAccess = 0700
+	ReadWriteAccess        = 0666
+	ReadWriteExecuteAccess = 0777
 
 	// Common file flags when opening/creating files
 	FileFlagsCreateOrAppend   = os.O_APPEND | os.O_WRONLY | os.O_CREATE
