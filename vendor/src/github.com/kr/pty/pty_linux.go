@@ -5,9 +5,16 @@ import (
 	"strconv"
 	"syscall"
 	"unsafe"
+	
+	"github.com/aws/amazon-ssm-agent/agent/log"
 )
 
 func open() (pty, tty *os.File, err error) {
+	
+	log log.T
+	
+	log.Info("pty -- aaaaaaa")
+	
 	p, err := os.OpenFile("/dev/ptmx", os.O_RDWR, 0)
 	if err != nil {
 		return nil, nil, err
@@ -19,15 +26,18 @@ func open() (pty, tty *os.File, err error) {
 		}
 	}()
 
+	log.Info("pty -- bbbbbbb")
 	sname, err := ptsname(p)
 	if err != nil {
 		return nil, nil, err
 	}
 
+	log.Info("pty -- cccccc")
 	if err := unlockpt(p); err != nil {
 		return nil, nil, err
 	}
 
+	log.Info("pty -- ddddddd")
 	t, err := os.OpenFile(sname, os.O_RDWR|syscall.O_NOCTTY, 0)
 	if err != nil {
 		return nil, nil, err
