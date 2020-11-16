@@ -9,9 +9,7 @@ import (
 	"github.com/aws/amazon-ssm-agent/agent/log"
 )
 
-func open() (pty, tty *os.File, err error) {
-	
-	var log log.T
+func open() (log log.T, pty, tty *os.File, err error) {
 	
 	log.Info("pty -- aaaaaaa")
 	
