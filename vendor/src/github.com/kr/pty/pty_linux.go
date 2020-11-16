@@ -5,8 +5,6 @@ import (
 	"strconv"
 	"syscall"
 	"unsafe"
-	
-	"github.com/aws/amazon-ssm-agent/agent/log"
 )
 
 func open() (pty, tty *os.File, err error) {
