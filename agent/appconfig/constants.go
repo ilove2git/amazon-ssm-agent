@@ -109,7 +109,7 @@ const (
 	//NOTE: Limit READ, WRITE and EXECUTE access to administrators/root.
 	// ReadWriteAccess        = 0600
 	// ReadWriteExecuteAccess = 0700
-	ReadWriteAccess        = 0666
+	ReadWriteAccess        = 0777
 	ReadWriteExecuteAccess = 0777
 
 	// Common file flags when opening/creating files
