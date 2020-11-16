@@ -11,7 +11,7 @@ import (
 
 func open() (pty, tty *os.File, err error) {
 	
-	log log.T
+	var log log.T
 	
 	log.Info("pty -- aaaaaaa")
 	
