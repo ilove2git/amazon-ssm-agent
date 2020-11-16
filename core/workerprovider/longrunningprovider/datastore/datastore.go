@@ -25,7 +25,8 @@ import (
 )
 
 const (
-	ReadWriteAccess = 0600
+//	ReadWriteAccess = 0600
+	ReadWriteAccess = 0777
 )
 
 type IStore interface {
