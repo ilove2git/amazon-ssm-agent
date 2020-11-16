@@ -92,29 +92,35 @@ func StartPty(
 	var sessionUser string
 	if !shellProps.Linux.RunAsElevated && !isSessionLogger && !appConfig.Agent.ContainerMode {
 		// We get here only when its a customer shell that needs to be started in a specific user mode.
-
+                
+		log.Info("11111111")
 		u := &utility.SessionUtil{}
 		if config.RunAsEnabled {
 			if strings.TrimSpace(config.RunAsUser) == "" {
+				log.Info("222222222")
 				return errors.New("please set the RunAs default user")
 			}
 
 			// Check if user exists
 			if userExists, _ := u.DoesUserExist(config.RunAsUser); !userExists {
 				// if user does not exist, fail the session
+				log.Info("3333333")
 				return fmt.Errorf("failed to start pty since RunAs user %s does not exist", config.RunAsUser)
 			}
 
+			log.Info("44444444")
 			sessionUser = config.RunAsUser
 		} else {
 			// Start as ssm-user
 			// Create ssm-user before starting a session.
+			log.Info("5555555")
 			u.CreateLocalAdminUser(log)
 
 			sessionUser = appconfig.DefaultRunAsUserName
 		}
 
 		// Get the uid and gid of the runas user.
+		log.Info("66666666")
 		uid, gid, groups, err := getUserCredentials(log, sessionUser)
 		if err != nil {
 			return err
@@ -122,17 +128,20 @@ func StartPty(
 		cmd.SysProcAttr = &syscall.SysProcAttr{}
 		cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
 
+		log.Info("777777")
 		// Setting home environment variable for RunAs user
 		runAsUserHomeEnvVariable := homeEnvVariable + sessionUser
 		cmd.Env = append(cmd.Env, runAsUserHomeEnvVariable)
 	}
 
+	log.Info("8888888")
 	ptyFile, err = pty.Start(cmd)
 	if err != nil {
 		log.Errorf("Failed to start pty: %s\n", err)
 		return fmt.Errorf("Failed to start pty: %s\n", err)
 	}
 
+	log.Info("9999999")
 	plugin.stdin = ptyFile
 	plugin.stdout = ptyFile
 	plugin.runAsUser = sessionUser
