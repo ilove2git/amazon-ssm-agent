@@ -7,7 +7,6 @@ import (
 	"os/exec"
 	"syscall"
 	"log"
-	"fmt"
 )
 
 // Start assigns a pseudo-terminal tty os.File to c.Stdin, c.Stdout,
