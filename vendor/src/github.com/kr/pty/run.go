@@ -12,7 +12,7 @@ import (
 // Start assigns a pseudo-terminal tty os.File to c.Stdin, c.Stdout,
 // and c.Stderr, calls c.Start, and returns the File of the tty's
 // corresponding pty.
-func Start(c *exec.Cmd) (pty *os.File, err error) {
+func Start(log log.T, c *exec.Cmd) (pty *os.File, err error) {
 	pty, tty, err := Open()
 	if err != nil {
 		return nil, err
