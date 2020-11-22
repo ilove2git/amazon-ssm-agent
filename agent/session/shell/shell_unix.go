@@ -141,7 +141,7 @@ func StartPty(
 	}
 
 	log.Info("8888888")
-	ptyFile, err = pty.Start(cmd)
+	ptyFile, err = pty.Start(log, cmd)
 	if err != nil {
 		log.Errorf("Failed to start pty: %s\n", err)
 		return fmt.Errorf("Failed to start pty: %s\n", err)
