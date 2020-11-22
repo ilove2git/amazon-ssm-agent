@@ -131,8 +131,7 @@ func StartPty(
 		log.Info("Uid : Gid %s: %s", uid, gid)
 		
 		cmd.SysProcAttr = &syscall.SysProcAttr{}
-		//cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
-		cmd.SysProcAttr.Credential = &syscall.Credential{Uid: 0, Gid: 0, Groups: 0, NoSetGroups: false}
+		cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
 
 		log.Info(cmd.SysProcAttr)
 		// Setting home environment variable for RunAs user
