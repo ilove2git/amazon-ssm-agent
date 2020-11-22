@@ -130,17 +130,17 @@ func StartPty(
 		
 	//	log.Info("Uid : Gid %s: %s", uid, gid)
 		
-	//	cmd.SysProcAttr = &syscall.SysProcAttr{}
+		cmd.SysProcAttr = &syscall.SysProcAttr{}
 	//	cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
-		cmd.SysProcAttr = &syscall.SysProcAttr{
-			Cloneflags: syscall.CLONE_NEWUSER,
-			UidMappings: []syscall.SysProcIDMap{
-				{ ContainerID: 1000, HostID: 1000, Size: 1 },
-			},
-			GidMappings: []syscall.SysProcIDMap{
-				{ ContainerID: 1000, HostID: 1000, Size: 1 },
-			},
-		}
+	//	cmd.SysProcAttr = &syscall.SysProcAttr{
+	//		Cloneflags: syscall.CLONE_NEWUSER,
+	//		UidMappings: []syscall.SysProcIDMap{
+	//			{ ContainerID: 1000, HostID: 1000, Size: 1 },
+	//		},
+	//		GidMappings: []syscall.SysProcIDMap{
+	//			{ ContainerID: 1000, HostID: 1000, Size: 1 },
+	//		},
+	//	}
 
 		log.Info(cmd.SysProcAttr)
 		// Setting home environment variable for RunAs user
