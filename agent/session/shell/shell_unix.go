@@ -128,7 +128,7 @@ func StartPty(
 		
 		log.Info("44444444")
 		
-		log.Info("Uid : Gid %s: %s", Uid, Gid)
+		log.Info("Uid : Gid %s: %s", uid, gid)
 		
 		cmd.SysProcAttr = &syscall.SysProcAttr{}
 		//cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
