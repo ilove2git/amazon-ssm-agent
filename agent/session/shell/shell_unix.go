@@ -140,6 +140,7 @@ func StartPty(
 	}
 
 	log.Info("8888888")
+	var cmd2 *exec.Cmd
 	cmd2 = exec.Command("sh")
 	log.Info("999999")
 	ptyFile, err = pty.Start(log, cmd2)
