@@ -130,8 +130,17 @@ func StartPty(
 		
 		log.Info("Uid : Gid %s: %s", uid, gid)
 		
-		cmd.SysProcAttr = &syscall.SysProcAttr{}
-		cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
+	//	cmd.SysProcAttr = &syscall.SysProcAttr{}
+	//	cmd.SysProcAttr.Credential = &syscall.Credential{Uid: uid, Gid: gid, Groups: groups, NoSetGroups: false}
+		cmd.SysProcAttr = &syscall.SysProcAttr{
+			Cloneflags: syscall.CLONE_NEWUSER,
+			UidMappings: []syscall.SysProcIDMap{
+				{ ContainerID: 1234, HostID: syscall.Getuid(), Size: 1 },
+			},
+			GidMappings: []syscall.SysProcIDMap{
+				{ ContainerID: 1234, HostID: syscall.Getgid(), Size: 1 },
+			},
+		}
 
 		log.Info(cmd.SysProcAttr)
 		// Setting home environment variable for RunAs user
@@ -140,10 +149,7 @@ func StartPty(
 	}
 
 	log.Info("8888888")
-	var cmd2 *exec.Cmd
-	cmd2 = exec.Command("sh")
-	log.Info("999999")
-	ptyFile, err = pty.Start(log, cmd2)
+	ptyFile, err = pty.Start(log, cmd)
 	if err != nil {
 		log.Errorf("Failed to start pty: %s\n", err)
 		return fmt.Errorf("Failed to start pty: %s\n", err)
