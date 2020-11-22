@@ -121,10 +121,10 @@ func StartPty(
 
 		// Get the uid and gid of the runas user.
 		log.Info("66666666")
-		uid, gid, groups, err := getUserCredentials(log, sessionUser)
-		if err != nil {
-			return err
-		}
+	//	uid, gid, groups, err := getUserCredentials(log, sessionUser)
+	//	if err != nil {
+	//		return err
+	//	}
 		
 		log.Info("44444444")
 		
