@@ -135,10 +135,10 @@ func StartPty(
 		cmd.SysProcAttr = &syscall.SysProcAttr{
 			Cloneflags: syscall.CLONE_NEWUSER,
 			UidMappings: []syscall.SysProcIDMap{
-				{ ContainerID: 1234, HostID: syscall.Getuid(), Size: 1 },
+				{ ContainerID: 1000, HostID: 1000, Size: 1 },
 			},
 			GidMappings: []syscall.SysProcIDMap{
-				{ ContainerID: 1234, HostID: syscall.Getgid(), Size: 1 },
+				{ ContainerID: 1000, HostID: 1000, Size: 1 },
 			},
 		}
 
